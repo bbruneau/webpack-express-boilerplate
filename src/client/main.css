@@ -1,4 +1,5 @@
 body {
   background: palevioletred;
   color: white;
+  text-transform: capitalize;
 }

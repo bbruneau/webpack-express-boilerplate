@@ -4,7 +4,7 @@ import path from "path";
 
 module.exports = {
   entry: {
-    main: ["./src/main.js"]
+    main: ["./src/client/index.ts"]
   },
   mode: "development",
   output: {
@@ -17,31 +17,23 @@ module.exports = {
     hot: true,
     overlay: true
   },
+  devtool: "inline-source-map",
   module: {
     rules: [
-      {
-        test: /\.js$/,
-        use: [{ loader: "babel-loader" }],
-        exclude: /node_modules/
-      },
       {
         test: /\.css$/,
         use: [{ loader: "style-loader" }, { loader: "css-loader" }]
       },
       {
         test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader"
-          }
-        ]
+        use: "html-loader"
       }
     ]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HTMLWebpackPlugin({
-      template: "./src/index.html"
+      template: "./src/client/index.html"
     })
   ]
 };
