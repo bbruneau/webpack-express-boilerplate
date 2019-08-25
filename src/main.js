@@ -1,4 +1,4 @@
-require("@babel/runtime/regenerator");
-require("webpack-hot-middleware/client?reload=true");
-require("./main.css");
-require("./index.html");
+import "@babel/runtime/regenerator";
+import "webpack-hot-middleware/client?reload=true";
+import "./main.css";
+import "./index.html";
