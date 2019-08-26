@@ -1,8 +1,8 @@
-import webpack from "webpack";
+import { Configuration, HotModuleReplacementPlugin } from "webpack";
 import HTMLWebpackPlugin from "html-webpack-plugin";
 import path from "path";
 
-module.exports = {
+const config: Configuration = {
   entry: {
     main: ["react-hot-loader/patch", "./src/client/index.ts"]
   },
@@ -38,7 +38,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    new HotModuleReplacementPlugin(),
     new HTMLWebpackPlugin({
       template: "./src/client/index.html",
       xhtml: true
@@ -48,3 +48,5 @@ module.exports = {
     extensions: [".ts", ".tsx", ".js", ".json"]
   }
 };
+
+export default config;
