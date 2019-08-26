@@ -4,7 +4,7 @@ import path from "path";
 
 module.exports = {
   entry: {
-    main: ["./src/client/index.ts"]
+    main: ["react-hot-loader/patch", "./src/client/index.ts"]
   },
   mode: "development",
   output: {
@@ -21,6 +21,13 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(j|t)sx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader"
+        }
+      },
+      {
         test: /\.css$/,
         use: [{ loader: "style-loader" }, { loader: "css-loader" }]
       },
@@ -33,7 +40,11 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HTMLWebpackPlugin({
-      template: "./src/client/index.html"
+      template: "./src/client/index.html",
+      xhtml: true
     })
-  ]
+  ],
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".json"]
+  }
 };
