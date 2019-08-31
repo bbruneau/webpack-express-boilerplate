@@ -5,8 +5,11 @@ import webpackDevMiddleware, {
   Options as WebpackDevMiddlewareOptions
 } from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
+import colors from "colors/safe";
 
 import config from "../../config/webpack.dev.babel";
+
+const { PORT = 3000 } = process.env;
 
 const compiler = webpack(config);
 
@@ -20,6 +23,16 @@ server.use(
 );
 server.use(webpackHotMiddleware(compiler));
 
-server.listen(3000, () => {
-  console.log("listening on 3000");
+server.listen(PORT, () => {
+  const msg = `Server listening on port ${PORT}`;
+  const line = Array.from(Array(msg.length + 6))
+    .map((_, i) => `=`)
+    .join("");
+  console.log(
+    colors.rainbow(`
+${line}
+   ${msg}   
+${line}
+  `)
+  );
 });

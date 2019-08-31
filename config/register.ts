@@ -1,3 +1,4 @@
+require("dotenv").config();
 require("@babel/register")({
   extensions: [".js", ".jsx", ".ts", ".tsx"]
 });
